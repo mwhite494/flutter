@@ -135,6 +135,12 @@ class CreateCommand extends FlutterCommand {
       defaultsTo: 'java',
       allowed: <String>['java', 'kotlin'],
     );
+    argParser.addFlag(
+      'androidx',
+      negatable: true,
+      defaultsTo: true,
+      help: 'Generate a project using the AndroidX support libraries',
+    );
   }
 
   @override
@@ -331,6 +337,7 @@ class CreateCommand extends FlutterCommand {
       flutterRoot: flutterRoot,
       renderDriverTest: argResults['with-driver-test'],
       withPluginHook: generatePlugin,
+      androidX: argResults['androidx'],
       androidLanguage: argResults['android-language'],
       iosLanguage: argResults['ios-language'],
     );
@@ -537,6 +544,7 @@ To edit platform code in an IDE see https://flutter.dev/developing-packages/#edi
     String projectName,
     String projectDescription,
     String androidLanguage,
+    bool androidX,
     String iosLanguage,
     String flutterRoot,
     bool renderDriverTest = false,
@@ -556,6 +564,7 @@ To edit platform code in an IDE see https://flutter.dev/developing-packages/#edi
       'iosIdentifier': _createUTIIdentifier(organization, projectName),
       'description': projectDescription,
       'dartSdk': '$flutterRoot/bin/cache/dart-sdk',
+      'androidX': androidX,
       'androidMinApiLevel': android.minApiLevel,
       'androidSdkVersion': android_sdk.minimumAndroidSdkVersion,
       'androidFlutterJar': '$flutterRoot/bin/cache/artifacts/engine/android-arm/flutter.jar',
