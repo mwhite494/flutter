@@ -138,7 +138,7 @@ class CreateCommand extends FlutterCommand {
     argParser.addFlag(
       'androidx',
       negatable: true,
-      defaultsTo: true,
+      defaultsTo: false,
       help: 'Generate a project using the AndroidX support libraries',
     );
   }
